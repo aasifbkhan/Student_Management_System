@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Student Database{% endblock %}
+{% block body %}
+<div class="container">
+<form class="mt-2 mx-2 bg-white" action="/update_crs/{{ crs.id }}" method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+        <div class="col col-md-8">
+           <input class="form-control form-control-sm" type="hidden" name="id" id="id" value="{{ crs.id }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="course" class="col col-md-4 col-form-lable">Course</label>
+        <div class="col col-md-8">
+            <input type="text" name="course" class="form-control form-control-sm" placeholder="Enter Course Name." required id="id_course" value="{{crs.course}}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fees" class="col col-md-4 col-form-label">Fees</label>
+        <div class="col col-md-8">
+            <input type="number" name="fees" class="form-control form-control-sm" placeholder="Enter Fees *INR." step="any" required id="id_fees" value="{{crs.fees}}">
+        </div>
+    </div>
+    <div class="text-center col col-md-auto" id="button">
+        <input class="btn btn-success my-2 mx-2 rounded-sm" type="submit" value="Update">
+        <a href="/course/"><button class="btn btn-danger my-2 mx-1 rounded-sm" value="Cancel">Cancel</button></a>
+</form>
+</div>
+{% endblock %}

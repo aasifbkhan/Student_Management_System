@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My App{% endblock %}
+{% block body %}
+<div class="container my-2 border border rounded">
+    <div class="row my-1">
+        <div class="col col-md-4">
+            <img src="{% static 'asset/images/stud.gif' %}" class="rounded rounded-circle shadow" alt="" width="200" height="200">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <img src="{% static 'asset/images/icon.jpg' %}" class="rounded rounded-circle shadow" alt="" width="110" height="110">
+            <h1>Welcome...! to,</h1>
+            <h3>Allana Institute Of Managment Sciences.</h3>
+        </div>    
+    </div>
+    <div class="row my-1 justify-content-end">
+        <div class="col-md-4 align-self-end">
+                <img src="{% static 'asset/images/studgrd.gif' %}" class="rounded rounded-circle shadow" alt="" width="200" height="200">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Student Database{% endblock %}
+{% block body %}
+<div class="mx-2 my-2 border row" style="background-color: snow;">
+    <div class="container text-center border-bottom rounded-md" style="background-color: whitesmoke;">
+        <h3>Student Database</h3>
+    </div>
+    <div class="col col-md-4 border-right" id="stud_form" >
+        {% if messages %}
+            <div class="alert alert-success alert-dismissible fade show messages mt-2 mx-2" role="alert">
+            {% for message in messages %}
+                <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> 
+            {% endfor %}
+        {% endif %}
+        <form class="mt-2 mx-2 bg-white" action="#" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label for="first_name" class="col col-md-4 col-form-label">First Name</label>
+                <div class="col col-md-8">
+                    {{ student_form.first_name }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="last_name" class="col col-md-4 col-form-label">Last Name</label>
+                <div class="col col-md-8">
+                    {{ student_form.last_name }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="contact" class="col col-md-4 col-form-label">Contact</label>
+                <div class="col col-md-8">
+                    {{ student_form.contact }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col col-md-4 col-form-lable">Email</label>
+                <div class="col col-md-8">
+                    {{ student_form.email }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="course" class="col col-md-4 col-form-lable">Course</label>
+                <div class="col col-md-8">
+                    {{ student_form.course }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fees" class="col col-md-4 col-form-label">Fees</label>
+                <div class="col col-md-8">
+                    {{ student_form.fees }}
+                </div>
+            </div>
+            <div class="text-center col col-md-auto">
+                <input class="btn btn-primary my-2 rounded-sm" type="submit" value="submit">
+            </div>
+        </form>
+    </div>
+    <div class="col col-md-8">
+        <table class="table table-sm text-center table-bordered bg-white mt-2" style="font-size: 14px;">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Fees *INR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in stud %}
+                <tr> 
+                    <td>{{i.first_name}} {{i.last_name}}</td>
+                    <td>{{i.contact}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.course}}</td>
+                    <td>{{i.fees}}</td>
+                    <td><a href="/student_update/{{i.id}}"><button class="btn btn-info btn-sm mx-1"><i class="fas fa-pen"></i></button></a></td>
+                    <td><a href="/delete/{{i.id}}"><button class="btn btn-danger btn-sm mx-1"><i class="fas fa-trash"></i></button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
